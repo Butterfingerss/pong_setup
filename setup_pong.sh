@@ -112,26 +112,6 @@ if [ -f "$DISPLAY_BP" ] && grep -q 'lto_Instr100' "$DISPLAY_BP"; then
     echo ""
 fi
 
-# Reassemble split Hyperzoom library if split parts exist
-HYPERZOOM_DIR="vendor/nothing/Pong/proprietary/vendor/lib64"
-HYPERZOOM_SO="$HYPERZOOM_DIR/libhyperzoom.arcsoft.so"
-if [ -f "$HYPERZOOM_DIR/libhyperzoom.arcsoft.so.part00" ] && [ ! -f "$HYPERZOOM_SO" ]; then
-    echo "🔨 Reassembling libhyperzoom.arcsoft.so..."
-    cat "$HYPERZOOM_DIR"/libhyperzoom.arcsoft.so.part* > "$HYPERZOOM_SO"
-    echo "✅ Assembled $HYPERZOOM_SO"
-    echo ""
-fi
-
-# Reassemble split NTCamera APK if split parts exist
-NTCAM_DIR="vendor/nothing/camera/proprietary/system_ext/priv-app/NTCamera"
-NTCAM_APK="$NTCAM_DIR/NTCamera.apk"
-if [ -f "$NTCAM_DIR/NTCamera.apk.part00" ] && [ ! -f "$NTCAM_APK" ]; then
-    echo "🔨 Reassembling NTCamera.apk..."
-    cat "$NTCAM_DIR"/NTCamera.apk.part* > "$NTCAM_APK"
-    echo "✅ Assembled $NTCAM_APK"
-    echo ""
-fi
-
 # Setup done
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
